@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react';
+import Graph from './components/Graph'
+import { Button, Col, Row } from 'react-bootstrap';
 
 function App() {
+  let [graphs, setGraphs] = useState([0]);
+  let [nextGraphId, setNextGraphId] = useState(1);
+
+  useEffect(() => { document.title = "Izzy's Toast Masters timer"}, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+  <div className="container" >
+    <Row xs={3}>
+      {graphs.map((graph) => <Graph key={graph} handleDelete={() => {
+        let newGraphs = [...graphs];
+        newGraphs.splice(newGraphs.indexOf(graph), 1);
+        setGraphs(newGraphs);
+        }} />)}
+      <Col className='align-content-center'>
+        <Button 
+        variant="primary" 
+        onClick={() => {
+          setGraphs([ ...graphs, nextGraphId]);
+          setNextGraphId(nextGraphId + 1);
+        }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          +
+        </Button>
+      </Col>
+    </Row>
+  </div>
+  )
 }
 
 export default App;
