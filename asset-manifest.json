@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/toast-masters-timer/static/css/main.b4da9aed.css",
-    "main.js": "/toast-masters-timer/static/js/main.b73297fe.js",
+    "main.js": "/toast-masters-timer/static/js/main.22e3c767.js",
     "index.html": "/toast-masters-timer/index.html",
     "main.b4da9aed.css.map": "/toast-masters-timer/static/css/main.b4da9aed.css.map",
-    "main.b73297fe.js.map": "/toast-masters-timer/static/js/main.b73297fe.js.map"
+    "main.22e3c767.js.map": "/toast-masters-timer/static/js/main.22e3c767.js.map"
   },
   "entrypoints": [
     "static/css/main.b4da9aed.css",
-    "static/js/main.b73297fe.js"
+    "static/js/main.22e3c767.js"
   ]
 }
