@@ -30,6 +30,11 @@ const Graph: React.FC<GraphProps> = ({ handleDelete }) => {
       event.preventDefault();
 
       let form = new FormData(event.currentTarget)
+
+      let newMax = max;
+      let newRed = red;
+      let newYellow = yellow;
+      let newGreen = green;
       
       let name = form.get('name')
       if (typeof name == "string") {
@@ -39,24 +44,24 @@ const Graph: React.FC<GraphProps> = ({ handleDelete }) => {
       let maxMinutes = form.get('maxMinutes')
       let maxSeconds = form.get('maxSeconds')
       if (typeof maxMinutes == "string" && typeof maxSeconds == "string") {
-        setMax(Number(maxMinutes) * 60 + Number(maxSeconds));
+        newMax = Number(maxMinutes) * 60 + Number(maxSeconds);
       }
 
       let redMinutes = form.get('redMinutes')
       let redSeconds = form.get('redSeconds')
       if (typeof redMinutes == "string" && typeof redSeconds == "string") {
-        let newRed = Number(redMinutes) * 60 + Number(redSeconds);
-        if (newRed < max) {
-          setRed(newRed);
+        let num = Number(redMinutes) * 60 + Number(redSeconds);
+        if (num < newMax) {
+          newRed = num;
         }
       }
 
       let yellowMinutes = form.get('yellowMinutes')
       let yellowSeconds = form.get('yellowSeconds')
       if (typeof yellowMinutes == "string" && typeof yellowSeconds == "string") {
-        let newYellow = Number(yellowMinutes) * 60 + Number(yellowSeconds);
-        if (newYellow < red) {
-          setYellow(newYellow);
+        let num = Number(yellowMinutes) * 60 + Number(yellowSeconds);
+        if (num < newRed) {
+          newYellow = num;
         }
       }
 
@@ -64,11 +69,16 @@ const Graph: React.FC<GraphProps> = ({ handleDelete }) => {
       let greenMinutes = form.get('greenMinutes')
       let greenSeconds = form.get('greenSeconds')
       if (typeof greenMinutes == "string" && typeof greenSeconds == "string") {
-        let newGreen = Number(greenMinutes) * 60 + Number(greenSeconds);
-        if (newGreen < yellow) {
-          setGreen(newGreen);
+        let num = Number(greenMinutes) * 60 + Number(greenSeconds);
+        if (num < newYellow) {
+          newGreen = num;
         }
       }
+
+      setMax(newMax);
+      setRed(newRed);
+      setYellow(newYellow);
+      setGreen(newGreen);
 
       setActual(Number(form.get('actualMinutes')) * 60 + Number(form.get('actualSeconds')));
 
